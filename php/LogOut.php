@@ -4,11 +4,16 @@
   <?php include '../html/Head.html'?>
 </head>
 <body>
-  <?php include '../php/MenusNotLogged.php' ?>
+  <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-Que te vaya bien :D
-	
+        <?php
+            echo "<script>
+                    alert('Adios, vuelve cuando quieras.');
+                    window.location.href='Layout.php';
+                </script>";  
+        ?>
+      
     </div>
   </section>
   <?php include '../html/Footer.html' ?>

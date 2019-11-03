@@ -1,68 +1,45 @@
-function ValidateFieldsQuestion(){
-	 
-    var subm = true;
-   var email=$('#correo').val();
-	if(email==""){
-		alert("Por favor no dejes el correo electronico vacio");
-	
-		subm= false;
+function validarFormulario(){
+    
+    var resul = true;
+    $("form :input").each(function(){
+        var input = $(this);
+        if(input.val()==""){
+            resul = false;
+            alert("El campo "+ "\' "+ input.attr("name")+"\'"+" esta vacio.");
 
-	}
-	else if (!(/^[a-zA-Z]*\d{3}\@ikasle\.ehu\.(eus|es)$/.test(email)|/^[a-zA-Z]*\.[a-zA-Z]*\@ehu\.(eus|es)$/.test(email)|/^[a-zA-Z]*\@ehu\.(eus|es)$/.test(email))){
-		window.alert("Email incorrecto"); 
+        }else{
+            if(input.attr("id")=="dirCorreo"){
+                resul = validarCorreo(input.val());
+                if(!resul){
+                    alert("El correo electronico introducido no es correcto.");
+                }
+            }else if(input.attr("id")=="nombrePregunta"){
+                if(input.val().length<10){
+                    alert("El enunciado de la pregunta es demasiado corto.");
+                    resul = false;
+                }
+            }
+        }
+    });
+    return resul;
+}
 
-		subm= false;
-	}
+$('document').ready(function(){
+    $('#submit').click(function(){
+        return validarFormulario();
+    });
+});
 
-	var enunciado=$('#enunciado').val();
-	if(enunciado==""){
-		alert("Por favor no dejes el enunciado vacio");
-	
-		subm= false;
-	}
-	else if(enunciado.length<10) {
-		alert("El enunciado debe tener al menos 10 caracteres");
+function validarCorreo(correo){
 
-		subm= false;
-	}
-	var correcta =$('#correcta').val();
-	if(correcta==""){
-		alert("Por favor no dejes la respuesta correcta vacia");
-	
-		subm= false;
-	}
-	var incorrecta1 =$('#incorrecta1').val();
-	if(incorrecta1==""){
-		alert("Por favor no dejes la respuesta incorrecta 1 vacia");
-	
-		subm= false;
-	}
-	var incorrecta2 =$('#incorrecta2').val();
-	if(incorrecta2==""){
-		alert("Por favor no dejes la respuesta incorrecta 2 vacia");
-	
-		subm= false;
-	}
-	var incorrecta3 =$('#incorrecta3').val();
-	if(incorrecta3==""){
-		alert("Por favor no dejes la respuesta incorrecta 3 vacia");
-	
-		rsubm= false;
-	}
-	var dificultad = $('#dificultad option:selected').val();
-	
-	var tema=$('#tema').val();
-	if (tema==""){
-		alert("Por favor de dejes el tema vacio");
-	
-		subm= false;
-	}
-
-if ( subm == true) $('#fquestion').submit();
- }
-
-	
-
- 
-
- //onsubmit="return ValidateFieldsQuestion()">
+    var regexAlu = /^[a-zA-Z]+(([0-9]{3})+@ikasle\.ehu\.(eus|es))$/;
+    var regexPro = /^[a-zA-Z]+(\.[a-zA-Z]+@ehu\.(eus|es)|@ehu\.(eus|es))$/;
+    
+    if(regexAlu.test(correo)){
+        return true;
+    }
+    else if(regexPro.test(correo)){
+        return true;
+    }
+    return false;
+}
