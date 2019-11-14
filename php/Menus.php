@@ -8,7 +8,7 @@
      <script src="../js/CounterHandler.js"></script>
       <div id="totalUsers">
     <script type="text/javascript">
-        setInterval (countUsersTotal(), 10000); 
+        setInterval (countUsersTotal, 10000); 
     </script>
 </div>
   <span class="right" id="register"><a href="SignUp.php">Registro</a></span>
