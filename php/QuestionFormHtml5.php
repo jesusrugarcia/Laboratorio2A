@@ -4,6 +4,7 @@
   <?php include '../html/Head.html'?>
     <script src="../js/jquery-3.4.1.min.js"></script>
     <script src="../js/ShowImageInForm.js"></script>
+    <script src="../js/Handle.js"></script>
 </head>
 <body>
   <?php include '../php/Menus.php' ?>
@@ -34,7 +35,8 @@
             <div id="selector">
             <input type="file" id="file" accept="image/*" name="Imagen">
             </div>
-            <p> <input type="submit" id="submit" value="Enviar"> <input type="reset" value="Limpiar"></p>
+            <p> <input type="submit" id="submit" value="Enviar"> <input type="reset" value="Limpiar">
+            <input type="button" id="ShowQuestions" value="Mostrar Preguntas" onclick="showQuestions()"></p>
         </form>
     </div>
       

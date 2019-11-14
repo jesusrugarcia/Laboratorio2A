@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <?php include '../html/Head.html'?>
-</head>
-<body>
-  <?php include '../php/Menus.php' ?>
-  <section class="main" id="s1">
-    <div>
-    <?php
+<?php 
      libxml_use_internal_errors(true);
+    
     $preguntas= simplexml_load_file('../xml/Questions.xml');
     echo "<table border = ><tr><th>Autor</th><th>Enunciado</th><th>Respuesta Correcta</th>";
     foreach ($preguntas->xpath('//assessmentItem') as $pregunta){
@@ -27,8 +19,3 @@
                               
        
     ?>
-    </div>
-  </section>
-  <?php include '../html/Footer.html' ?>
-</body>
-</html>

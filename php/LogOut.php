@@ -2,6 +2,7 @@
 <html>
 <head>
   <?php include '../html/Head.html'?>
+   <script type="text/javascript" src="../js/CounterHandler.js'?>"></script>'
 </head>
 <body>
   <?php include '../php/Menus.php' ?>
@@ -9,6 +10,9 @@
     <div>
         <?php
             echo "<script>
+            countDecrease();
+                    cierreSesion();
+
                     alert('Adios, vuelve cuando quieras.');
                     window.location.href='Layout.php';
                 </script>";  

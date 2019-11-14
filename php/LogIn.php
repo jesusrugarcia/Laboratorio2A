@@ -2,6 +2,7 @@
 <html>
 <head>
   <?php include '../html/Head.html'?>
+   <script type="text/javascript" src="../js/CounterHandler.js'?>"></script>'
 </head>
 <body>
   <?php include '../php/Menus.php' ?>
@@ -45,6 +46,7 @@
                    /* sleep(3);
                     header("location:Layout.php?email=".$_REQUEST['dirCorreo']);*/
                     echo "<script>
+                    countIncrease();
                     alert('Inicio de sesion realizado correctamente. Pulsa aceptar para acceder a la pantalla principal.');
                     window.location.href='Layout.php?email=".$_REQUEST['dirCorreo']."';
                     </script>";  

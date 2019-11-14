@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <?php include '../html/Head.html'?>
-</head>
-<body>
-  <?php include '../php/Menus.php' ?>
-  <section class="main" id="s1">
-    <div>
          <?php
             if(isset($_REQUEST['dirCorreo'])){
                 $regexMail="/((^[a-zA-Z]+(([0-9]{3})+@ikasle\.ehu\.(eus|es))$)|^[a-zA-Z]+(\.[a-zA-Z]+@ehu\.(eus|es)|@ehu\.(eus|es))$)/";
@@ -29,7 +20,7 @@
                             $respuestai3 = $_REQUEST['respuestaIncorrecta3'];
                             $complejidad = $_REQUEST['complejidad'];
                             $tema = $_REQUEST['temaPregunta'];
-                            $image = $_FILES['Imagen']['tmp_name'];
+                            $image = $_FILES['file']['tmp_name'];
                             $contenido_imagen = base64_encode(file_get_contents($image));
 
                             $sql = "INSERT INTO preguntas(email, enunciado, respuestac, respuestai1, respuestai2, respuestai3, complejidad, tema, imagen) VALUES('$email', '$enunciado', '$respuestac', '$respuestai1', '$respuestai2', '$respuestai3', $complejidad, '$tema', '$contenido_imagen')";
@@ -39,20 +30,18 @@
                                 die("Error: " .mysqli_error($mysqli));
                             } else{
                             echo "Registro añadido<br>";
-                            echo "<a href=\"ShowQuestionsWithImage.php?email=".$_GET['email']."\">Click en este enlace para ver todos los registros.</a><br>";
+                            echo "<a href=\"ShowQuestionsWithImage.php?email=".$GLOBALS['email']."\">Click en este enlace para ver todos los registros.</a><br>";
                             mysqli_close($mysqli);
 
-                          libxml_use_internal_errors(true);
+                         
                            $xml= simplexml_load_file("../xml/Questions.xml");
-                           $sxe= new SimpleXMLElement($xml->asXML());
-                           if ($sxe === false){
+                           
+                           if ($xml === false){
                             echo "Error cargando XML \n";
-                            foreach(libxml_get_errors() as $error) {
-                              echo "\t", $error->message;
-                              }
+                          
                            }
-                           $sxe->formatOutput= true;
-                           $newItem = $sxe->addChild("assessmentItem");
+                           else{
+                           $newItem = $xml->addChild("assessmentItem");
                            $newItem->addAttribute('subject',$tema);
                            $newItem->addAttribute('author',$email);
                            $newChild= $newItem->addChild("itemBody");
@@ -64,11 +53,9 @@
                            $newValue=$newChild->addChild("value",$respuestai2);
                            $newValue=$newChild->addChild("value",$respuestai3);
 
-                           $sxe->asXml("../xml/Questions.xml");
+                           $xml->asXml("../xml/Questions.xml");
                            echo "se ha completado la insercion XML <br>";
-                            foreach(libxml_get_errors() as $error) {
-                              echo "\t", $error->message;
-                              }
+                          }
 
 
 
@@ -86,8 +73,4 @@
                  }
             }          
           ?>
-    </div>
-  </section>
-  <?php include '../html/Footer.html' ?>
-</body>
-</html>
+  

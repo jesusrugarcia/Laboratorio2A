@@ -15,7 +15,7 @@
             die("Fallo al conectar con la base de datos: " .mysqli_connect_error());
         }
         
-        $sql = "SELECT * FROM preguntas WHERE email=\"".$_GET['email']."\";";
+        $sql = "SELECT * FROM preguntas;";
         $resul = mysqli_query($link,$sql,MYSQLI_USE_RESULT);
         if(!$resul){
             die("Error: ".mysqli_error($link));
@@ -30,6 +30,7 @@
         mysqli_close($link);
     ?>
     </div>
+    <div id="QuestionSpace"></div>
   </section>
   <?php include '../html/Footer.html' ?>
 </body>
