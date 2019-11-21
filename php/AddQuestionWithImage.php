@@ -35,13 +35,16 @@
 
                          
                            $xml= simplexml_load_file("../xml/Questions.xml");
-                           
+                           $ultid=$xml['ultclave']+1;
+                           $xml['ultclave']=$ultid;
+
                            if ($xml === false){
                             echo "Error cargando XML \n";
                           
                            }
                            else{
                            $newItem = $xml->addChild("assessmentItem");
+                           $newItem->addAttribute('clave',$ultid);
                            $newItem->addAttribute('subject',$tema);
                            $newItem->addAttribute('author',$email);
                            $newChild= $newItem->addChild("itemBody");

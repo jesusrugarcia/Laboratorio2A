@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="ShowXmlQuestions.xslt" ?>
-<assessmentItems>
-<assessmentItem subject="Prueba" author="test@ehu.es"><itemBody><p>Esta pregunta es una prueba</p></itemBody><correctResponse><value>si</value></correctResponse><incorrectResponses><value>de acuerdo</value><value>perfecto</value><value>muy bien</value></incorrectResponses></assessmentItem><assessmentItem subject="Uso Correcto" author="testb@ehu.es"><itemBody><p>Veamos si funciona esta vez</p></itemBody><correctResponse><value>lo hace perfectamente</value></correctResponse><incorrectResponses><value>No lo hace</value><value>saltara error</value><value>sabes algo de lo que haces?</value></incorrectResponses></assessmentItem></assessmentItems>
+<assessmentItems ultclave="39">
+	<assessmentItem clave="33" subject="Prueba" author="test@ehu.es">
+		<itemBody>
+			<p>Esta pregunta es una prueba</p>
+		</itemBody>
+		<correctResponse><value>si</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>de acuerdo</value><value>perfecto</value><value>muy bien</value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem clave="34" subject="Uso Correcto" author="testb@ehu.es">
+		<itemBody>
+			<p>Veamos si funciona esta vez</p>
+		</itemBody>
+		<correctResponse>
+			<value>lo hace perfectamente</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>No lo hace</value><value>saltara error</value><value>sabes algo de lo que haces?</value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem clave="35" subject="2222" author="test@ehu.es">
+		<itemBody><p>Prueba 2 de ajax</p></itemBody>
+		<correctResponse><value>1111</value></correctResponse>
+		<incorrectResponses><value>2222</value><value>333</value><value>444</value></incorrectResponses>
+	</assessmentItem>
+	<assessmentItem clave="36" subject="asdasdasdas" author="vadillo@ehu.es">
+		<itemBody><p>asdadasdasdasd</p></itemBody>
+		<correctResponse><value>asdasdas</value></correctResponse>
+		<incorrectResponses><value>dasdasdasdas</value><value>dsadasdsad</value><value>asdsadasd</value></incorrectResponses>
+	</assessmentItem>
+<assessmentItem clave="39" subject="XML" author="jrugarcia001@ikasle.ehu.eus"><itemBody><p>Se añade el codigo de la pregunta?</p></itemBody><correctResponse><value>Si</value></correctResponse><incorrectResponses><value>no</value><value>no</value><value>nop</value></incorrectResponses></assessmentItem></assessmentItems>
