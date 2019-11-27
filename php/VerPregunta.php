@@ -1,3 +1,18 @@
+<?php session_start(); 
+if (isset($_SESSION['user'])){
+  if ($_SESSION['user']=='admin@ehu.es'){
+  echo "<script>
+                    alert('No tienes los permisos pertinente. Pulsa aceptar para acceder a la pantalla principal.');
+                    window.location.href='Layout.php';
+                    </script>"; 
+}
+} else {
+   echo "<script>
+                    alert('No has iniciado sesion. Pulsa aceptar para acceder a la pantalla principal.');
+                    window.location.href='Layout.php';
+                    </script>"; 
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,3 +1,11 @@
+<?php session_start(); 
+if (isset($_SESSION['user'])){
+  echo "<script>
+                    alert('Ya estas logeado. Pulsa aceptar para acceder a la pantalla principal.');
+                    window.location.href='Layout.php?;
+                    </script>"; 
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,26 +43,36 @@
                 $email = $_REQUEST['dirCorreo'];
                 $pass = $_REQUEST['pass'];
                 
-                $sql = "SELECT * FROM usuarios WHERE email=\"".$email."\" and pass=\"".$pass."\";";
+                $sql = "SELECT * FROM usuarios WHERE email=\"".$email."\" and pass=\"".crypt($pass,'patata')."\";";
                 
                 $resultado = mysqli_query($mysqli,$sql,MYSQLI_USE_RESULT);
                 if(!$resultado){
                     die("Error: ".mysqli_error($mysqli));
                 }
                 $row = mysqli_fetch_array($resultado);
+                if($row['bloqueado']==1){
+                   echo "<script>
+                    alert('Cuenta suspendida. Pulsa aceptar para acceder a la pantalla principal.');
+                    window.location.href='Layout.php';
+                    </script>";
+                    return;
+                }
                 if($row['email']==$email){
                    /* sleep(3);
                     header("location:Layout.php?email=".$_REQUEST['dirCorreo']);*/
+                    $_SESSION['user']= $email;
                     echo "<script>
                     countIncrease();
                     alert('Inicio de sesion realizado correctamente. Pulsa aceptar para acceder a la pantalla principal.');
-                    window.location.href='Layout.php?email=".$_REQUEST['dirCorreo']."';
+                    window.location.href='Layout.php?';
                     </script>";  
                 }else{
                     echo "Usuario o contraseña incorrectos, prueba de nuevo. <br>";
                     echo "<a href=\"javascript:history.back()\">Volver a atras</a>";
                 }
                 
+            } else {
+
             }
     
     

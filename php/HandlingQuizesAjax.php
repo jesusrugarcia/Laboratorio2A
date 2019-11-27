@@ -1,3 +1,18 @@
+<?php session_start(); 
+if (isset($_SESSION['user'])){
+  if ($_SESSION['user']=='admin@ehu.es'){
+  echo "<script>
+                    alert('No tienes los permisos pertinente. Pulsa aceptar para acceder a la pantalla principal.');
+                    window.location.href='Layout.php';
+                    </script>"; 
+}
+} else {
+   echo "<script>
+                    alert('No has iniciado sesion. Pulsa aceptar para acceder a la pantalla principal.');
+                    window.location.href='Layout.php';
+                    </script>"; 
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +36,7 @@
     <div>
         <form action="" name="fquestion" id="fquestion" method="post" enctype="multipart/form-data">
             <p>Introduce tu dirección de correo: *</p>
-            <input type="text" size="60" id="dirCorreo" name="dirCorreo" value=<?php echo ('"'.$_REQUEST['email'].'"');?> readonly>
+            <input type="text" size="60" id="dirCorreo" name="dirCorreo" value=<?php echo ('"'.$_SESSION['user'].'"');?> readonly>
             <p>Introduce el enunciado de la pregunta: *</p>
             <input type="text" size="60" id="nombrePregunta" name="nombrePregunta">
             <p>Respuesta correcta: *</p>

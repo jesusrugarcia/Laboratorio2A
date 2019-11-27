@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<assessmentItems ultclave="39">
+<assessmentItems ultclave="40">
 	<assessmentItem clave="33" subject="Prueba" author="test@ehu.es">
 		<itemBody>
 			<p>Esta pregunta es una prueba</p>
@@ -31,4 +31,4 @@
 		<correctResponse><value>asdasdas</value></correctResponse>
 		<incorrectResponses><value>dasdasdasdas</value><value>dsadasdsad</value><value>asdsadasd</value></incorrectResponses>
 	</assessmentItem>
-<assessmentItem clave="39" subject="XML" author="jrugarcia001@ikasle.ehu.eus"><itemBody><p>Se añade el codigo de la pregunta?</p></itemBody><correctResponse><value>Si</value></correctResponse><incorrectResponses><value>no</value><value>no</value><value>nop</value></incorrectResponses></assessmentItem></assessmentItems>
+<assessmentItem clave="39" subject="XML" author="jrugarcia001@ikasle.ehu.eus"><itemBody><p>Se añade el codigo de la pregunta?</p></itemBody><correctResponse><value>Si</value></correctResponse><incorrectResponses><value>no</value><value>no</value><value>nop</value></incorrectResponses></assessmentItem><assessmentItem clave="40" subject="Mi Pantalla" author="jrugarcia001@ikasle.ehu.eus"><itemBody><p>¿Cual es la marca de mi pantalla?</p></itemBody><correctResponse><value>BenQ</value></correctResponse><incorrectResponses><value>LG</value><value>Samsung</value><value>Xiaomi</value></incorrectResponses></assessmentItem></assessmentItems>

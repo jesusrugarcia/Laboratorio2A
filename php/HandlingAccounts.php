@@ -1,6 +1,6 @@
 <?php session_start(); 
 if (isset($_SESSION['user'])){
-  if ($_SESSION['user']=='admin@ehu.es'){
+  if ($_SESSION['user']!='admin@ehu.es'){
   echo "<script>
                     alert('No tienes los permisos pertinente. Pulsa aceptar para acceder a la pantalla principal.');
                     window.location.href='Layout.php';
@@ -17,11 +17,15 @@ if (isset($_SESSION['user'])){
 <html>
 <head>
   <?php include '../html/Head.html'?>
+  <script type="text/javascript" src="../js/HandleUser.js"></script>
 </head>
 <body>
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
+
+      <h2>Gestionando Cuentas</h2>
+      <form id="formuser" action="HandlingAccounts.php" method="post">
       <?php
         include 'DbConfig.php';
         //Creamos la conexion con la BD.
@@ -30,24 +34,26 @@ if (isset($_SESSION['user'])){
             die("Fallo al conectar con la base de datos: " .mysqli_connect_error());
         }
         
-        $sql = "SELECT * FROM preguntas;";
-        $resul = mysqli_query($link,$sql,MYSQLI_USE_RESULT);
-        if(!$resul){
-            die("Error: ".mysqli_error($link));
-        }
-        
-        echo "<table border = ><tr><th>Email</th><th>Enunciado</th><th>Respuesta Correcta</th><th>Respuesta Incorrecta 1</th> <th>Respuesta Incorrecta 2</th><th>Respuesta Incorrecta 3</th><th>Complejidad</th><th>Tema</th><th>Imagen</th></tr>";
+        $sql = "SELECT * FROM usuarios;";
+        $resul = mysqli_query($link,$sql);
+        echo "<table border = ><tr><th>Email</th><th>Pass</th><th>Foto</th><th>Estado</th><th>Bloqueo</th> <th>Borrar</th></tr>";
         while($row = mysqli_fetch_array($resul)){
-
-            echo "<tr><td>".$row['email']."</td><td>".$row['enunciado']."</td><td>".$row['respuestac']."</td><td>".$row['respuestai1']."</td><td>".$row['respuestai2']."</td><td>".$row['respuestai3']."</td><td>".$row['complejidad']."</td><td>".$row['tema']."</td><td><img width=\"150\" height=\"150\" src=\"data:image/*;base64, ".$row['imagen']."\" alt=\"Imagen\"/></td></tr>";
+            echo "<tr><td>".$row['email']."</td><td>".$row['pass']."</td><td><img width=\"30\" height=\"30\" src=\"data:image/*;base64, ".$row['foto']."\" alt=\"Foto\"/></td>";
+            if ($row['bloqueado']==0){
+            	echo "<td>Normal</td>";
+            } else {
+            	echo "<td>Bloqueado</td>";
+            }
+            echo "<td><input type=\"button\" value=\"Bloqueo\" onclick=\"changeBloqueado('".$row['email'].", "
+            .$row['bloqueado']."')\" </td> <td><input type=\"button\" value=\"Borrar\" onclick=\"borrarUsuario('".$row['email']."')\"</td></tr>";
         }
         echo "</table>";
         mysqli_close($link);
     ?>
+      </form>
     </div>
-    <div id="QuestionSpace"></div>
+    <div id="result"></div>
   </section>
   <?php include '../html/Footer.html' ?>
 </body>
 </html>
-
